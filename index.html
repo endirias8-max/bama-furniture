@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bama Furniture | ባማ የቤት እና የቢሮ ዕቃዎች</title>
+
+  <!-- Google Search Impact (SEO) Meta Tags -->
+  <meta name="description" content="በሶዶ እና በመላው ኢትዮጵያ ከፍተኛ ጥራት ያላቸውን የቤት፣ አልጋ፣ ሶፋ እና የቢሮ እቃዎችን በባማ ፈርኒቸር ያግኙ።">
+  <meta name="keywords" content="Bama Furniture, ባማ ፈርኒቸር, Sodo Furniture, የቤት እቃዎች, አልጋ, ሶፋ, Murphy Bed, Ethiopia Furniture">
+  
+  <!-- Tailwind CSS & Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  
+  <!-- Telegram Web App SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; background-color: #FAF8F5; }
+    .active-filter { background-color: #2C1D11 !important; color: #ffffff !important; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="pb-24 text-gray-800">
+
+  <!-- 1. Header & Branding -->
+  <header class="sticky top-0 z-50 bg-[#2C1D11] text-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <span class="material-icons text-amber-500 text-3xl">weekend</span>
+        <div>
+          <h1 class="text-xl font-bold tracking-wide text-amber-100">BAMA FURNITURE</h1>
+          <p class="text-[10px] text-amber-300">የጥራት እና የውበት መኖሪያ | Sodo, Ethiopia</p>
+        </div>
+      </div>
+      <a href="#location" class="bg-amber-600 hover:bg-amber-700 text-white text-xs px-3 py-1.5 rounded-full flex items-center space-x-1 transition">
+        <span class="material-icons text-sm">location_on</span>
+        <span class="hidden sm:inline">አድራሻችን</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- 2. Hero Section (ተጽዕኖ ፈጣሪ ባነር) -->
+  <section class="relative bg-cover bg-center h-72 flex items-center justify-center text-center text-white" 
+           style="background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');">
+    <div class="px-4 max-w-2xl">
+      <span class="bg-amber-600 text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full">100% የጥራት ዋስትና</span>
+      <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-2 text-amber-100">የቤትዎን ደረጃ ከፍ የሚያደርጉ የቅንጦት እቃዎች</h2>
+      <p class="text-xs text-gray-200 mb-4">ከባለሙያ የተሰሩ ዘመናዊ፣ አስተማማኝ እና ቦታ ቆጣቢ ፈርኒቸሮች በቀጥታ ከፋብሪካው።</p>
+      <div class="flex justify-center space-x-3">
+        <a href="#catalog" class="bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg shadow-lg">ምርቶችን ይመልከቱ</a>
+        <a href="#order-modal" onclick="openOrderModal('አጠቃላይ ጥያቄ', 0)" class="bg-white text-gray-900 text-xs font-semibold px-5 py-2.5 rounded-lg shadow-lg">በቀጥታ ያዝዙ</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Dynamic Catalog Section -->
+  <div class="max-w-6xl mx-auto px-4 py-8" id="catalog">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-lg font-bold text-gray-800">የምርት ክፍሎች</h3>
+      <span class="text-xs text-amber-800 font-semibold">Bama Exclusive Sets</span>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="flex space-x-2 overflow-x-auto pb-4 hide-scrollbar mb-4">
+      <button class="filter-btn px-4 py-1.5 rounded-full text-xs font-medium border border-gray-300 bg-white shadow-sm active-filter" data-category="all">ሁሉም</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-xs font-medium border border-gray-300 bg-white shadow-sm" data-category="sofa">ሶፋዎች</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-xs font-medium border border-gray-300 bg-white shadow-sm" data-category="bed">አልጋዎች (Murphy Beds)</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-xs font-medium border border-gray-300 bg-white shadow-sm" data-category="table">ጠረጴዛዎች</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-xs font-medium border border-gray-300 bg-white shadow-sm" data-category="office">የቢሮ እቃዎች</button>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="product-grid">
+      
+      <!-- Product 1 -->
+      <div class="item bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden" data-category="sofa">
+        <img alt="Sofa Set" class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc">
+        <div class="p-3">
+          <span class="text-[10px] font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded">የሳሎን ሶፋ</span>
+          <h4 class="text-xs font-bold text-gray-800 mt-1">ዘመናዊ L-Shape ሶፋ</h4>
+          <p class="text-[11px] text-amber-900 font-bold mt-1">ETB 65,000</p>
+          <button onclick="openOrderModal('ዘመናዊ L-Shape ሶፋ', 65000)" class="w-full mt-3 bg-[#2C1D11] hover:bg-black text-white text-xs py-2 rounded-lg transition flex justify-center items-center space-x-1">
+            <span class="material-icons text-sm">shopping_cart</span>
+            <span>አሁን ግዛ</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="item bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden" data-category="bed">
+        <img alt="Murphy Bed" class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85">
+        <div class="p-3">
+          <span class="text-[10px] font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded">ቦታ ቆጣቢ አልጋ</span>
+          <h4 class="text-xs font-bold text-gray-800 mt-1">Space-Saving Murphy Bed</h4>
+          <p class="text-[11px] text-amber-900 font-bold mt-1">ETB 85,000</p>
+          <button onclick="openOrderModal('Space-Saving Murphy Bed', 85000)" class="w-full mt-3 bg-[#2C1D11] hover:bg-black text-white text-xs py-2 rounded-lg transition flex justify-center items-center space-x-1">
+            <span class="material-icons text-sm">shopping_cart</span>
+            <span>አሁን ግዛ</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="item bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden" data-category="table">
+        <img alt="Dining Table" class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1615874959474-d609969a0656">
+        <div class="p-3">
+          <span class="text-[10px] font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded">የምግብ ጠረጴዛ</span>
+          <h4 class="text-xs font-bold text-gray-800 mt-1">የእንጨት ዳይኒንግ ሴት</h4>
+          <p class="text-[11px] text-amber-900 font-bold mt-1">ETB 42,000</p>
+          <button onclick="openOrderModal('የእንጨት ዳይኒንግ ሴት', 42000)" class="w-full mt-3 bg-[#2C1D11] hover:bg-black text-white text-xs py-2 rounded-lg transition flex justify-center items-center space-x-1">
+            <span class="material-icons text-sm">shopping_cart</span>
+            <span>አሁን ግዛ</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="item bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden" data-category="office">
+        <img alt="Executive Chair" class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7">
+        <div class="p-3">
+          <span class="text-[10px] font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded">የቢሮ ወንበር</span>
+          <h4 class="text-xs font-bold text-gray-800 mt-1">Executive Office Chair</h4>
+          <p class="text-[11px] text-amber-900 font-bold mt-1">ETB 18,000</p>
+          <button onclick="openOrderModal('Executive Office Chair', 18000)" class="w-full mt-3 bg-[#2C1D11] hover:bg-black text-white text-xs py-2 rounded-lg transition flex justify-center items-center space-x-1">
+            <span class="material-icons text-sm">shopping_cart</span>
+            <span>አሁን ግዛ</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4. Location & Map Section (ሎኬሽን ጠቋሚ) -->
+  <section class="max-w-6xl mx-auto px-4 py-6" id="location">
+    <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+      <div class="flex items-center space-x-2 mb-3">
+        <span class="material-icons text-amber-700">place</span>
+        <h3 class="text-base font-bold text-gray-800">ወርክሾፕ እና ሾውሩማችንን ይጎብኙ</h3>
+      </div>
+      <p class="text-xs text-gray-600 mb-4">አድራሻ፡ ሶዶ (Sodo)፣ ደቡብ ኢትዮጵያ። በካርታው ላይ በመጫን በቀጥታ አድራሻችንን ማግኘት ይችላሉ።</p>
+      
+      <!-- Responsive Google Maps Embed -->
+      <div class="w-full h-56 rounded-lg overflow-hidden shadow-inner border">
+        <iframe 
+          title="Bama Furniture Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15814.717173873335!2d37.7500!3d6.8500!2m3!1f0!2f0!3f0!2m3!1i1024!2i768!4f13.1!3m3!1m2!1s0x17b1898517555555%3A0x123456789!2sSodo%2C%20Ethiopia!5e0!3m2!1sen!2set!4v1600000000000!5m2!1sen!2set" 
+          class="w-full h-full border-0" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Web Impact / Social Proof (የደንበኞች አስተያየት) -->
+  <section class="max-w-6xl mx-auto px-4 py-6">
+    <h3 class="text-base font-bold text-gray-800 mb-3">የደንበኞቻችን ምስክርነት</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-amber-50/60 p-4 rounded-xl border border-amber-100">
+        <div class="flex items-center space-x-1 text-amber-500 mb-1">
+          <span class="material-icons text-sm">star</span>
+          <span class="material-icons text-sm">star</span>
+          <span class="material-icons text-sm">star</span>
+          <span class="material-icons text-sm">star</span>
+          <span class="material-icons text-sm">star</span>
+        </div>
+        <p class="text-xs text-gray-700 italic">"የባማ Murphy Bed በቤቴ ውስጥ በጣም ትልቅ ቦታ ቆጥቦልኛል። የእንጨቱ ጥራት እና ስራው እጅግ በጣም ፕሮፌሽናል ነው።"</p>
+        <p class="text-[10px] font-bold text-gray-900 mt-2">— አማኑኤል ተስፋዬ (ከሶዶ)</p>
+      </div>
+      <div class="bg-amber-50/60 p-4 rounded-xl border border-amber-100">
+        <div class="flex items-center space-x-1 text-amber-500 mb-1">
+          <span class="material-icons text-sm">star</span>
+          <span class="material-icons text-sm">star</span>
+          <span class="material-icons text-sm">star</span>
+          <span class="material-icons text-sm">star</span>
+          <span class="material-icons text-sm">star</span>
+        </div>
+        <p class="text-xs text-gray-700 italic">"ለቢሮአችን ያዘዝናቸውን ወንበሮች እና ጠረጴዛዎች በሰአቱ አስረክበውናል። በቴሌግራም አዝዤ በTelebirr በቀላሉ መክፈሌ በጣም ይመቻል።"</p>
+        <p class="text-[10px] font-bold text-gray-900 mt-2">— ዶ/ር ዮሴፍ (ከሀዋሳ)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Order & Payment Modal (የክፍያ እና ማዘዣ ሞዳል) -->
+  <div id="order-modal" class="fixed inset-0 bg-black bg-opacity-60 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-5 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeOrderModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
+        <span class="material-icons">close</span>
+      </button>
+      
+      <h3 class="text-base font-bold text-gray-900 mb-1">ትዕዛዝዎን ያረጋግጡ</h3>
+      <p class="text-xs text-gray-500 mb-4" id="modal-product-name">ምርት፡ -</p>
+
+      <form id="checkout-form" onsubmit="handleCheckout(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">ሙሉ ስም</label>
+          <input type="text" required placeholder="ለምሳሌ፡ እንዳሪያስ በዛብህ" class="w-full text-xs p-2.5 border rounded-lg focus:ring-1 focus:ring-amber-800 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">ስልክ ቁጥር</label>
+          <input type="tel" required placeholder="0911......" class="w-full text-xs p-2.5 border rounded-lg focus:ring-1 focus:ring-amber-800 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">የማስረከቢያ አድራሻ (Delivery Location)</label>
+          <input type="text" required placeholder="ከተማ / ክፍለ ከተማ / ልዩ ቦታ" class="w-full text-xs p-2.5 border rounded-lg focus:ring-1 focus:ring-amber-800 outline-none">
+        </div>
+
+        <!-- Payment Gateways (የሕሳብ መቀበያ) -->
+        <div class="pt-2">
+          <label class="block text-xs font-semibold text-gray-700 mb-2">የክፍያ ዘዴ ይምረጡ (Payment Method)</label>
+          <div class="grid grid-cols-2 gap-2">
+            <label class="border p-2 rounded-lg flex items-center space-x-2 cursor-pointer hover:bg-amber-50">
+              <input type="radio" name="payment" value="Telebirr" checked class="text-amber-800">
+              <span class="text-xs font-bold text-blue-600">Telebirr</span>
+            </label>
+            <label class="border p-2 rounded-lg flex items-center space-x-2 cursor-pointer hover:bg-amber-50">
+              <input type="radio" name="payment" value="CBE Birr" class="text-amber-800">
+              <span class="text-xs font-bold text-purple-700">CBE Birr / ባንክ</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-[#2C1D11] text-white py-3 rounded-lg text-xs font-bold hover:bg-black transition mt-4">
+          ትዕዛዙን በቴሌግራም ጨርስ
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#1F140B] text-gray-300 py-6 px-4">
+    <div class="max-w-6xl mx-auto text-center space-y-2">
+      <p class="text-xs font-bold text-amber-200">Bama Furniture Manufacturing</p>
+      <p class="text-[11px] text-gray-400">ሶዶ፣ ኢትዮጵያ | ስልክ፡ +251 900 000 000</p>
+      <p class="text-[10px] text-gray-500 pt-2">&copy; 2026 Bama Furniture. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating Quick Telegram/Call Button -->
+  <div class="fixed bottom-4 right-4 flex flex-col space-y-2 z-40">
+    <a href="https://t.me/your_telegram_username" target="_blank" class="bg-blue-500 text-white p-3 rounded-full shadow-xl flex items-center justify-center hover:scale-105 transition">
+      <span class="material-icons text-xl">send</span>
+    </a>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    let selectedProduct = '';
+    let selectedPrice = 0;
+
+    // Filter Logic
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active-filter'));
+        button.classList.add('active-filter');
+        const selectedCategory = button.dataset.category;
+
+        items.forEach(item => {
+          if (selectedCategory === 'all' || item.dataset.category === selectedCategory) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Modal Logic
+    function openOrderModal(name, price) {
+      selectedProduct = name;
+      selectedPrice = price;
+      document.getElementById('modal-product-name').innerText = `ምርት፡ ${name} - ETB ${price.toLocaleString()}`;
+      document.getElementById('order-modal').classList.remove('hidden');
+    }
+
+    function closeOrderModal() {
+      document.getElementById('order-modal').classList.add('hidden');
+    }
+
+    // Checkout & Telegram Routing
+    function handleCheckout(e) {
+      e.preventDefault();
+      const inputs = e.target.querySelectorAll('input');
+      const name = inputs[0].value;
+      const phone = inputs[1].value;
+      const address = inputs[2].value;
+      const payment = e.target.querySelector('input[name="payment"]:checked').value;
+
+      const message = `ሰላም Bama Furniture%0Aአዲስ ትዕዛዝ አለኝ%0A%0A📦 **ምርት:** ${selectedProduct}%0A💰 **ዋጋ:** ETB ${selectedPrice}%0A👤 **ስም:** ${name}%0A📞 **ስልክ:** ${phone}%0A📍 **አድራሻ:** ${address}%0A💳 **የክፍያ መንገድ:** ${payment}`;
+      
+      // Redirect to Telegram with order details
+      window.open(`https://t.me/your_telegram_username?text=${message}`, '_blank');
+      closeOrderModal();
+    }
+  </script>
+</body>
+</html>
